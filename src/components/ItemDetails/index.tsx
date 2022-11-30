@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, redirect } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAccount, useContract, useProvider, useSigner } from "wagmi";
 import Moralis from "moralis";
 import { EvmChain } from "@moralisweb3/evm-utils";
@@ -30,6 +30,7 @@ const ItemDetails: React.FC = () => {
   });
   const txLoading = useTxLoading();
   const errorNotification = useErrorNotification();
+  const navigate = useNavigate();
 
   const closeHandler = () => {
     setOpen(false);
@@ -70,7 +71,7 @@ const ItemDetails: React.FC = () => {
       );
       await auctionTx.wait();
       setOpen(false);
-      redirect("/myauctions");
+      navigate("/myauctions");
       console.log("Auction Successed");
     } catch (err) {
       const errForm = JSON.parse(JSON.stringify(err));
@@ -109,7 +110,7 @@ const ItemDetails: React.FC = () => {
         ethers.utils.parseEther(price.toString())
       );
       await bidTx.wait();
-      redirect("/auction");
+      navigate("/auction");
       console.log("Bid Successed");
       setOpen(false);
     } catch (err) {
@@ -129,7 +130,7 @@ const ItemDetails: React.FC = () => {
         nftData.highestBid.applicant
       );
       await acceptTx.wait();
-      redirect("/mynfts");
+      navigate("/mynfts");
       console.log("Accept Successed");
     } catch (err) {
       const errForm = JSON.parse(JSON.stringify(err));
@@ -146,7 +147,7 @@ const ItemDetails: React.FC = () => {
         tokenId
       );
       await cancelTx.wait();
-      redirect("/mynfts");
+      navigate("/mynfts");
       console.log("Cancel Successed");
     } catch (err) {
       const errForm = JSON.parse(JSON.stringify(err));
@@ -210,6 +211,7 @@ const ItemDetails: React.FC = () => {
           startingPrice: parseFloat(
             ethers.utils.formatEther(auction.startingPrice)
           ),
+          owner: auction.seller,
           seller: auction.seller,
         },
         isMine: cmpAddress(auction.seller, address ?? ""),

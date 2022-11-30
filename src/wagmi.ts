@@ -12,6 +12,7 @@ const { chains, provider, webSocketProvider } = configureChains([chain.polygon],
 ])
 
 export const client = createClient({
+  autoConnect: true,
   connectors: [
     new MetaMaskConnector({ chains }),
     new WalletConnectConnector({
