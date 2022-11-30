@@ -23,7 +23,7 @@ const walletData = [
 const Wallet = () => {
   const { connectors, connect } = useConnect();
   const walletConnectionHandler = (walletId: number) => {
-    connect({ connector: connectors[walletId] });
+    connect({ connector: connectors[walletId], chainId: 137 });
   };
   return (
     <section className="wallet-connect-area">
