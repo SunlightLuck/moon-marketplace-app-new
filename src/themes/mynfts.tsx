@@ -38,9 +38,7 @@ const MyNFTs = () => {
           }
         });
       } while (redditTx.pagination.cursor);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
     return redditContracts;
   };
 
@@ -52,7 +50,6 @@ const MyNFTs = () => {
       });
 
       const redditContracts: any = await getRedditContracts();
-      console.log(redditContracts);
 
       const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
         address: address ?? "",
@@ -84,14 +81,10 @@ const MyNFTs = () => {
                 mode: element.contractType === "ERC721" ? 0 : 1,
               },
             ];
-            console.log("genesis: ", element);
           }
         })
       );
-    } catch (err) {
-      console.log(err);
-    }
-    console.log(genesis);
+    } catch (err) {}
     return genesis;
   };
 

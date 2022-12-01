@@ -41,7 +41,6 @@ const ItemDetails: React.FC = () => {
     endingPrice: number,
     duration: number
   ) => {
-    console.log("Put on Auction: ", startingPrice, endingPrice, duration);
     const nftType = nftData.contractType === "ERC721" ? 0 : 1;
     txLoading.setOpen(true);
     try {
@@ -72,10 +71,8 @@ const ItemDetails: React.FC = () => {
       await auctionTx.wait();
       setOpen(false);
       navigate("/myauctions");
-      console.log("Auction Successed");
     } catch (err) {
       const errForm = JSON.parse(JSON.stringify(err));
-      console.log(errForm);
       errorNotification.setError(errForm.message ?? "");
     }
     txLoading.setOpen(false);
@@ -111,11 +108,9 @@ const ItemDetails: React.FC = () => {
       );
       await bidTx.wait();
       navigate("/auction");
-      console.log("Bid Successed");
       setOpen(false);
     } catch (err) {
       const errForm = JSON.parse(JSON.stringify(err));
-      console.log(err, errForm);
       errorNotification.setError(errForm.message ?? "");
     }
     txLoading.setOpen(false);
@@ -131,7 +126,6 @@ const ItemDetails: React.FC = () => {
       );
       await acceptTx.wait();
       navigate("/mynfts");
-      console.log("Accept Successed");
     } catch (err) {
       const errForm = JSON.parse(JSON.stringify(err));
       errorNotification.setError(errForm.message ?? "");
@@ -148,7 +142,6 @@ const ItemDetails: React.FC = () => {
       );
       await cancelTx.wait();
       navigate("/mynfts");
-      console.log("Cancel Successed");
     } catch (err) {
       const errForm = JSON.parse(JSON.stringify(err));
       errorNotification.setError(errForm.message ?? "");
@@ -175,8 +168,6 @@ const ItemDetails: React.FC = () => {
         tokenId: tokenId ?? "",
         chain: EvmChain.POLYGON,
       });
-      console.log("NFT data: ", data?.result);
-      console.log("Owner: ", data?.result.ownerOf?.checksum, address);
       genesis = {
         img: (data?.result.metadata?.image ?? "")
           .toString()
@@ -189,7 +180,6 @@ const ItemDetails: React.FC = () => {
         isMine: cmpAddress(data?.result.ownerOf?.checksum ?? "", address ?? ""),
       };
     } catch (err) {
-      console.log(err);
       return genesis;
     }
 
@@ -223,7 +213,6 @@ const ItemDetails: React.FC = () => {
         isOnAuction: false,
         btnType: genesis.isMine ? 2 : 3,
       };
-      console.log(err);
       return genesis;
     }
 
@@ -232,7 +221,6 @@ const ItemDetails: React.FC = () => {
         contractAddress ?? "",
         ethers.BigNumber.from(tokenId ?? "")
       );
-      console.log("bids: ", bids);
       genesis = {
         ...genesis,
         bids: bids.map((e: any) => ({
@@ -249,10 +237,7 @@ const ItemDetails: React.FC = () => {
             { applicant: "", price: 0 }
           ),
       };
-    } catch (err) {
-      console.log(err);
-    }
-    console.log("NFT data: ", genesis);
+    } catch (err) {}
     return genesis;
   };
 

@@ -76,17 +76,13 @@ const Auctions = () => {
           );
         })
       );
-    } catch (err) {
-      console.log(err);
-    }
-    console.log(results);
+    } catch (err) {}
     return results;
   };
   useEffect(() => {
     setLoading(true);
     getAuctions().then((res) => {
       setAuctions(res);
-      console.log("Auctions: ", auctions);
       setLoading(false);
     });
   }, []);
