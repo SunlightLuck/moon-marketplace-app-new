@@ -20,7 +20,6 @@ const Explore: React.FC<Props> = (props) => {
 
   const loadMoreHandler = () => {
     setPage(page + 4);
-    console.log(page);
   };
 
   return (

@@ -28,11 +28,9 @@ const MyAuctions: React.FC = () => {
     const results: any[] = [];
     try {
       const allContracts = await auctionContract?.getAllNFTAddress();
-      console.log("All NFT Contracts: ", allContracts);
       await Promise.all(
         allContracts.map(async (contract: string) => {
           const ids = await auctionContract?.getIdsAuction(contract);
-          console.log("All Auction Ids: ", contract, ids);
 
           await Promise.all(
             ids.map(async (tokenId: any) => {
@@ -84,17 +82,13 @@ const MyAuctions: React.FC = () => {
           );
         })
       );
-    } catch (err) {
-      console.log(err);
-    }
-    console.log(results);
+    } catch (err) {}
     return results;
   };
   useEffect(() => {
     setLoading(true);
     getAuctions(address ?? "").then((res) => {
       setAuctions(res);
-      console.log("Auctions: ", auctions);
       setLoading(false);
     });
   }, []);

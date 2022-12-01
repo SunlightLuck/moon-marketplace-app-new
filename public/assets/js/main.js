@@ -377,7 +377,6 @@ $( document ).ready(function() {
 
         $("#load-btn").on('click', function (e) {
 
-            console.log('item: ', $(".load-more .item").slice(0, 4))
             e.preventDefault();
 
             $(".load-more .item:hidden").slice(0, 4).slideDown();
