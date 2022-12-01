@@ -14,7 +14,8 @@ const data = [
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     inputs: [
       {
-        placeholder: "Price (MOON)",
+        placeholder: "Price",
+        unit: "MOON",
       },
     ],
     btnValue: "Send a Bid",
@@ -24,13 +25,16 @@ const data = [
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     inputs: [
       {
-        placeholder: "Starting Price (MOON)",
+        placeholder: "Starting Price",
+        unit: "MOON",
       },
       {
-        placeholder: "Ending Price (MOON)",
+        placeholder: "Ending Price",
+        unit: "MOON",
       },
       {
-        placeholder: "Duration (Days)",
+        placeholder: "Duration",
+        unit: "Days",
       },
     ],
     btnValue: "Put on Auction",
@@ -74,7 +78,11 @@ const ModalAuction: React.FC<Props> = (props) => {
           bgcolor: "#09080D",
           color: "white",
           width: "80%",
-          padding: "50px 80px",
+          padding: {
+            xs: "30px 10px",
+            sm: "40px 30px",
+            md: "50px 80px",
+          },
         },
       }}
     >
@@ -89,13 +97,24 @@ const ModalAuction: React.FC<Props> = (props) => {
       {data[props.type].inputs &&
         data[props.type].inputs?.map((element, id) => (
           <div className="row" key={element.placeholder}>
-            <div className="col-12 input-group mt-4">
+            <div className="col-12 input-group mt-4 position-relative">
               <input
                 type="number"
+                className="rounded-pill border-white"
+                style={{
+                  paddingLeft: "24px",
+                  paddingRight: "80px",
+                }}
                 placeholder={element.placeholder}
                 value={values[id]}
                 onChange={(e) => changeHandler(e, id)}
               />
+              <span
+                className="position-absolute"
+                style={{ right: "36px", top: "14px" }}
+              >
+                {element.unit}
+              </span>
             </div>
           </div>
         ))}

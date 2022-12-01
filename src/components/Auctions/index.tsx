@@ -94,7 +94,7 @@ const Auctions: React.FC<Props> = (props) => {
                               </div>
                               <div className="card-bottom d-flex justify-content-between">
                                 <span>{item.startingPrice} MOON</span>
-                                <span>{item.duration}s</span>
+                                <span>{item.duration / 86400} days</span>
                               </div>
                             </div>
                           </div>
