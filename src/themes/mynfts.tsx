@@ -31,7 +31,10 @@ const MyNFTs = () => {
         });
         redditTx.result.map((element) => {
           if (element.data?.startsWith(CONTRACT_CREATE_METHOD)) {
-            redditContracts = [...redditContracts, element.contractAddress];
+            redditContracts = [
+              ...redditContracts,
+              element.contractAddress?.lowercase,
+            ];
           }
         });
       } while (redditTx.pagination.cursor);
@@ -48,7 +51,7 @@ const MyNFTs = () => {
         apiKey: process.env.REACT_APP_MORALIS_API_KEY,
       });
 
-      const redditContracts: any = [];
+      const redditContracts: any = await getRedditContracts();
       console.log(redditContracts);
 
       const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
@@ -67,7 +70,7 @@ const MyNFTs = () => {
             )
             .then((res) => res.data);
 
-          if (true) {
+          if (redditContracts.includes(element.tokenAddress.lowercase)) {
             genesis = [
               ...genesis,
               {
