@@ -32,9 +32,8 @@ const Explore: React.FC<Props> = (props) => {
               <span>Explore</span>
               <h3 className="mt-3 mb-0">Exclusive Digital Assets</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Laborum obcaecati dignissimos quae quo ad iste ipsum officiis
-                deleniti asperiores sit.
+                Here you can browse NFTs you've already acquired, which should
+                also be visible in your MetaMask or Trust Wallet.
               </p>
             </div>
           </div>

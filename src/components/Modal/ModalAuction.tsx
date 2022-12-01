@@ -11,7 +11,7 @@ const data = [
   },
   {
     heading: "Send a Bid",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Send higher bid than others and get this NFT.",
     inputs: [
       {
         placeholder: "Price",
@@ -22,7 +22,7 @@ const data = [
   },
   {
     heading: "Put on Auction",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Put your NFT on Auction and get ",
     inputs: [
       {
         placeholder: "Starting Price",
@@ -55,9 +55,16 @@ const ModalAuction: React.FC<Props> = (props) => {
   const submitHandler = async () => {
     if (
       isEmpty(values[0]) ||
-      (props.type === 2 && (isEmpty(values[1]) || isEmpty(values[2])))
+      (props.type === 2 && (isEmpty(values[1]) || isEmpty(values[2]))) ||
+      parseFloat(values[0]) < 0 ||
+      (props.type === 2 &&
+        (parseFloat(values[1]) < 0 || parseFloat(values[2]) < 0))
     ) {
       errorNotification.setError("Invalid value");
+      return;
+    }
+    if (props.type === 2 && parseFloat(values[0]) > parseFloat(values[1])) {
+      errorNotification.setError("Ending Price must be higher than Starting");
       return;
     }
     await props.onSubmit(...values.map((e) => parseFloat(e)));
