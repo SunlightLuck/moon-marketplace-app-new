@@ -81,6 +81,19 @@ const ItemDetails: React.FC = () => {
   const sendBidHandler = async (price: number) => {
     txLoading.setOpen(true);
     try {
+      const tokenContract = new ethers.Contract(
+        Token.address[137],
+        Token.abi,
+        signer ?? provider
+      );
+
+      const currentBalance = await tokenContract?.balanceOf(address);
+      if (ethers.utils.parseEther(price.toString()).gt(currentBalance)) {
+        errorNotification.setError("Insufficient Moon");
+        txLoading.setOpen(false);
+        return;
+      }
+
       const currentPrice = await auctionContract?.getCurrentPrice(
         contractAddress ?? "",
         ethers.BigNumber.from(tokenId)
@@ -90,11 +103,6 @@ const ItemDetails: React.FC = () => {
         errorNotification.setError("Your offer is too low.");
         return;
       }
-      const tokenContract = new ethers.Contract(
-        Token.address[137],
-        Token.abi,
-        signer ?? provider
-      );
       const approveTx = await tokenContract?.approve(
         Auction.address[137],
         ethers.utils.parseEther(price.toString())
