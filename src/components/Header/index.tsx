@@ -2,6 +2,7 @@ import React from "react";
 import { useAccount, useDisconnect } from "wagmi";
 import { redirect, Link } from "react-router-dom";
 import logo from "../../assets/image/logo.png";
+import BalanceChip from "../BalanceChip";
 
 const Header: React.FC = () => {
   const { address, isConnected } = useAccount();
@@ -67,6 +68,9 @@ const Header: React.FC = () => {
             </li>
           </ul>
           {/* Navbar Action Button */}
+          <ul>
+            <BalanceChip></BalanceChip>
+          </ul>
           <ul className="navbar-nav action">
             <li className="nav-item ml-3">
               <Link
