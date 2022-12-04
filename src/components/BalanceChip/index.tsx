@@ -39,7 +39,7 @@ const BalanceChip: React.FC = () => {
         component={"span"}
         sx={{ verticalAlign: "middle", fontSize: { xs: "80%", md: "100%" } }}
       >
-        {parseFloat(ethers.utils.formatEther(data)).toFixed(4)}
+        {parseFloat(ethers.utils.formatEther(data)).toFixed(2)}
       </Box>
     </Box>
   ) : null;
