@@ -98,7 +98,7 @@ const MyNFTs = () => {
   return (
     <div className="main">
       <Header />
-      <Breadcrumb title="My NFTs" />
+      <Breadcrumb title="My Avatars" />
       <Explore nfts={nfts} loading={loading} />
       <Footer />
       <ModalMenu />

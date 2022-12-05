@@ -5,13 +5,14 @@ import { isEmpty } from "../../helpers/check";
 
 const data = [
   {
-    heading: "Cancel Auction",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    btnValue: "Cancel Auction",
+    heading: "",
+    description: "",
+    btnValue: "",
   },
   {
     heading: "Send a Bid",
-    description: "Send higher bid than others and get this NFT.",
+    description:
+      "Send higher bid than others to increase your chances of getting this Avatar.",
     inputs: [
       {
         placeholder: "Price",
@@ -22,7 +23,10 @@ const data = [
   },
   {
     heading: "Put on Auction",
-    description: "Put your NFT on Auction and get ",
+    description:
+      "Put your Reddit Avatar on Auction and get the best price from bidders.",
+    subdescription:
+      "Putting Avatars on Auction is Free of Charge but 5% Marketplace Fee is Taken After Successfully Selling Your Avatar.",
     inputs: [
       {
         placeholder: "Starting Price",
@@ -126,8 +130,17 @@ const ModalAuction: React.FC<Props> = (props) => {
           </div>
         ))}
 
+      {data[props.type].subdescription && (
+        <div className="row">
+          <div className="col-12 mt-5">
+            <span style={{ color: "#777", fontSize: "90%" }}>
+              {data[props.type].subdescription}
+            </span>
+          </div>
+        </div>
+      )}
       <div className="row">
-        <div className="col-12 input-group justify-content-center mt-4">
+        <div className="col-12 input-group justify-content-center">
           <button
             className="btn btn-bordered-white mt-3 px"
             onClick={submitHandler}
