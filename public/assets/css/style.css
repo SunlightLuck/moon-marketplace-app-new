@@ -539,6 +539,7 @@ select {
   padding: 0.7rem 1rem;
   border-color: var(--primary-l-color);
   border-width: 2px;
+  border-style: inset;
   border-radius: 2px;
 }
 
@@ -609,8 +610,8 @@ select {
   text-indent: 1px;
   text-overflow: "";
   line-height: 1.2;
-  border-color: var(--primary-l-color);
-  color: var(--primary-t-color);
+  border-color: var(--primary-p-color);
+  color: var(--primary-p-color);
 }
 
 select option {

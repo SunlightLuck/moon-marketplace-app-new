@@ -133,14 +133,12 @@ const ModalAuction: React.FC<Props> = (props) => {
       {data[props.type].subdescription && (
         <div className="row">
           <div className="col-12 mt-5">
-            <span style={{ color: "#777", fontSize: "90%" }}>
-              {data[props.type].subdescription}
-            </span>
+            <p style={{ fontSize: "90%" }}>{data[props.type].subdescription}</p>
           </div>
         </div>
       )}
       <div className="row">
-        <div className="col-12 input-group justify-content-center">
+        <div className="col-12 input-group justify-content-center mt-4">
           <button
             className="btn btn-bordered-white mt-3 px"
             onClick={submitHandler}
