@@ -133,7 +133,7 @@ const ItemDetails: React.FC = () => {
         nftData.highestBid.applicant
       );
       await acceptTx.wait();
-      navigate("/mynfts");
+      navigate("/myavatars");
     } catch (err) {
       const errForm = JSON.parse(JSON.stringify(err));
       errorNotification.setError(errForm.message ?? "");
@@ -149,7 +149,7 @@ const ItemDetails: React.FC = () => {
         tokenId
       );
       await cancelTx.wait();
-      navigate("/mynfts");
+      navigate("/myavatars");
     } catch (err) {
       const errForm = JSON.parse(JSON.stringify(err));
       errorNotification.setError(errForm.message ?? "");

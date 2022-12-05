@@ -42,8 +42,8 @@ const Header: React.FC = () => {
             </li>
             {isConnected && (
               <li className="nav-item">
-                <Link className="nav-link" to="/mynfts">
-                  My NFTs
+                <Link className="nav-link" to="/myavatars">
+                  My Avatars
                 </Link>
               </li>
             )}

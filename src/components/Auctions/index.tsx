@@ -12,6 +12,8 @@ const NETWORK_URL = "https://polygonscan.com/address/";
 interface Props {
   auctions?: any[];
   loading?: boolean;
+  heading: string;
+  subheading: string;
 }
 
 const Auctions: React.FC<Props> = (props) => {
@@ -29,12 +31,8 @@ const Auctions: React.FC<Props> = (props) => {
             {/* Intro */}
             <div className="intro text-center">
               <span>Auctions</span>
-              <h3 className="mt-3 mb-0">Live Auctions</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Laborum obcaecati dignissimos quae quo ad iste ipsum officiis
-                deleniti asperiores sit.
-              </p>
+              <h3 className="mt-3 mb-0">{props.heading}</h3>
+              <p>{props.subheading}</p>
             </div>
           </div>
         </div>

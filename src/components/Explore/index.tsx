@@ -30,10 +30,11 @@ const Explore: React.FC<Props> = (props) => {
             {/* Intro */}
             <div className="intro text-center">
               <span>Explore</span>
-              <h3 className="mt-3 mb-0">Exclusive Digital Assets</h3>
+              <h3 className="mt-3 mb-0">Reddit Digital Collectibles</h3>
               <p>
-                Here you can browse NFTs you've already acquired, which should
-                also be visible in your MetaMask or Trust Wallet.
+                Here you can browse Reddit Avatars you've already acquired,
+                which should also be visible in your Reddit Vault ,MetaMask or
+                Trust Wallet.
               </p>
             </div>
           </div>

@@ -3,23 +3,23 @@ import React from "react";
 const socialData = [
   {
     id: 1,
-    link: "facebook",
-    icon: "fab fa-facebook-f",
-  },
-  {
-    id: 2,
-    link: "twitter",
+    link: "https://twitter.com/MoonsSwap",
     icon: "fab fa-twitter",
   },
   {
+    id: 2,
+    link: "https://t.me/RedditMoon",
+    icon: "fab fa-telegram",
+  },
+  {
     id: 3,
-    link: "google-plus",
-    icon: "fab fa-google-plus-g",
+    link: "https://www.moonsdust.com",
+    icon: "fa fa-globe",
   },
   {
     id: 4,
-    link: "vine",
-    icon: "fab fa-vine",
+    link: "https://github.com/MoonsDusts",
+    icon: "fab fa-github",
   },
 ];
 
@@ -37,7 +37,11 @@ const Footer: React.FC = () => {
                 <div className="social-icons d-flex justify-content-center">
                   {socialData.map((item, idx) => {
                     return (
-                      <a key={`sd_${idx}`} className={item.link} href="#">
+                      <a
+                        key={`sd_${idx}`}
+                        className={item.link}
+                        href={item.link}
+                      >
                         <i className={item.icon} />
                         <i className={item.icon} />
                       </a>

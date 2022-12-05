@@ -91,7 +91,14 @@ const Auctions = () => {
     <div className="main">
       <Header />
       <Breadcrumb title="Auctions" />
-      <LiveAuctions auctions={auctions} loading={loading} />
+      <LiveAuctions
+        auctions={auctions}
+        loading={loading}
+        heading="Live Auction"
+        subheading="Explore and browse Live Auctions of Reddit Avatars. Discover
+                Avatar’s details and their auction statistics like Duration,
+                Initial/Final Price and the current bids."
+      />
       <Footer />
       <ModalMenu />
       <Scrollup />

@@ -19,7 +19,7 @@ const MyRouts = () => {
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/auction" element={<Auctions></Auctions>}></Route>
         <Route
-          path="/mynfts"
+          path="/myavatars"
           element={
             isConnected ? <MyNFTs></MyNFTs> : <Navigate to={"/"}></Navigate>
           }

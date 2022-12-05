@@ -3254,3 +3254,11 @@ header .navbar-expand .dropdown:hover > .dropdown-menu {
 
 /* #endregion All Media Queries */
 /*# sourceMappingURL=style.css.map */
+
+@media (min-width: 992px) {
+  .col-lg-2-4 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}

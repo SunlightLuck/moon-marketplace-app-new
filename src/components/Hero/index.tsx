@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const initData = {
   pre_heading: "Moon",
-  heading: "Discover, collect, and sell extraordinary NFTs",
-  content: "Explore on the world's best & largest NFT marketplace",
+  heading: "Discover, Bid, and Trade Reddit NFTs using Moons!",
+  content: "Explore the world's first & best Reddit NFTs marketplace",
   btn_1: "Auction",
 };
 

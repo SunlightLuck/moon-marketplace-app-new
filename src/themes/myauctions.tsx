@@ -96,7 +96,12 @@ const MyAuctions: React.FC = () => {
     <div className="main">
       <Header />
       <Breadcrumb title="My Auctions" />
-      <LiveAuctions auctions={auctions} loading={loading} />
+      <LiveAuctions
+        auctions={auctions}
+        loading={loading}
+        heading="My Live Auction"
+        subheading="Manage on your live Reddit Avatars auctions."
+      />
       <Footer />
       <ModalMenu />
       <Scrollup />
