@@ -14,7 +14,6 @@ const BalanceChip: React.FC = () => {
     args: [address],
     watch: true,
   });
-  console.log(data);
 
   return isConnected && ethers.BigNumber.isBigNumber(data) ? (
     <Box

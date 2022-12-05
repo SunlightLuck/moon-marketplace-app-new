@@ -18,7 +18,7 @@ const workData = [
   },
   {
     icon: "icon-drawer",
-    title: "Bid on NFTs",
+    title: "Bid on Reddit Avatars",
     text: "On the Auction house, select one of the Reddit Avatars and bid with high price to win the Reddit Avatars.",
   },
   {
