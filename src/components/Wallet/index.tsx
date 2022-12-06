@@ -35,9 +35,7 @@ const Wallet = () => {
               <span>Wallet Connect</span>
               <h3 className="mt-3 mb-0">Connect your Wallet</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Laborum obcaecati dignissimos quae quo ad iste ipsum officiis
-                deleniti asperiores sit.
+                Chose your preferred Web3 wallet to connect to Moon2NFT marketplace
               </p>
             </div>
           </div>

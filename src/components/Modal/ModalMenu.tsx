@@ -39,6 +39,13 @@ const ModalMenu: React.FC = () => {
                       </Link>
                     </li>
                   )}
+                  {isConnected && (
+                    <li className="nav-item dropdown">
+                      <Link className="nav-link" to="/bridge">
+                        Moons Bridge
+                      </Link>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>

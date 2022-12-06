@@ -6,6 +6,7 @@ import Home from "../themes/home";
 import Auctions from "../themes/auctions";
 import MyAuctions from "../themes/myauctions";
 import MyNFTs from "../themes/mynfts";
+import Bridge from "../themes/bridge";
 import WalletConnect from "../themes/wallet-connect";
 import ItemDetails from "../themes/item-details";
 import { useAccount } from "wagmi";
@@ -32,6 +33,12 @@ const MyRouts = () => {
             ) : (
               <Navigate to="/"></Navigate>
             )
+          }
+        ></Route>
+        <Route
+          path="/bridge"
+          element={
+            isConnected ? <Bridge></Bridge> : <Navigate to="/"></Navigate>
           }
         ></Route>
         <Route

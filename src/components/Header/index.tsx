@@ -54,6 +54,13 @@ const Header: React.FC = () => {
                 </Link>
               </li>
             )}
+            {isConnected && (
+              <li className="nav-item dropdown">
+                <Link className="nav-link" to="/bridge">
+                  Moons Bridge
+                </Link>
+              </li>
+            )}
           </ul>
           <ul className="navbar-nav toggle ml-auto">
             <li className="nav-item">
