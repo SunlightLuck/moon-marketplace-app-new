@@ -41,6 +41,10 @@ const Bridge: React.FC = () => {
               <br /> Fee: 1%
               <br /> Time: ~60 seconds
             </p>
+            <p className="text-white">Polygon Moons Contract Address:</p>
+            <p className="text-white">
+              0x0273d016067e74b0093A17503af05C5a88Ee5f8F
+            </p>
           </div>
         </div>
       </div>
