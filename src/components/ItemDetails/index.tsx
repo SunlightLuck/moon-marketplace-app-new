@@ -234,16 +234,9 @@ const ItemDetails: React.FC = () => {
         contractAddress ?? "",
         ethers.BigNumber.from(tokenId ?? "")
       );
-      console.log("----- Bid ------", bids);
       const enoughBids = await Promise.all(
         bids.map(async (element: any) => {
           const balance = await tokenContract?.balanceOf(element.applicant);
-          console.log(
-            "---",
-            element.applicant,
-            balance.toString(),
-            element.price.toString()
-          );
           if (ethers.BigNumber.from(balance).gte(element.price)) {
             return {
               applicant: element.applicant,
@@ -252,7 +245,6 @@ const ItemDetails: React.FC = () => {
           }
         })
       );
-      console.log("----- Enough bid -------", enoughBids);
       genesis = {
         ...genesis,
         bids: enoughBids,
