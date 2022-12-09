@@ -55,7 +55,7 @@ const MyNFTs = () => {
 
       do {
         nfts = await Moralis.EvmApi.nft.getWalletNFTs({
-          address: "0xac1a5f1c12ed3f89e949e2ffeb438c3656666666",
+          address: address ?? "",
           chain: EvmChain.POLYGON,
           ...(nfts ? { cursor: nfts?.pagination.cursor } : {}),
         });

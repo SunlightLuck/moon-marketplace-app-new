@@ -28,6 +28,11 @@ const ItemDetails: React.FC = () => {
     abi: Auction.abi,
     signerOrProvider: signer ?? provider,
   });
+  const tokenContract = useContract({
+    address: Token.address[137],
+    abi: Token.abi,
+    signerOrProvider: signer ?? provider,
+  });
   const txLoading = useTxLoading();
   const errorNotification = useErrorNotification();
   const navigate = useNavigate();
@@ -229,21 +234,32 @@ const ItemDetails: React.FC = () => {
         contractAddress ?? "",
         ethers.BigNumber.from(tokenId ?? "")
       );
+      console.log("----- Bid ------", bids);
+      const enoughBids = await Promise.all(
+        bids.map(async (element: any) => {
+          const balance = await tokenContract?.balanceOf(element.applicant);
+          console.log(
+            "---",
+            element.applicant,
+            balance.toString(),
+            element.price.toString()
+          );
+          if (ethers.BigNumber.from(balance).gte(element.price)) {
+            return {
+              applicant: element.applicant,
+              price: parseFloat(ethers.utils.formatEther(element.price)),
+            };
+          }
+        })
+      );
+      console.log("----- Enough bid -------", enoughBids);
       genesis = {
         ...genesis,
-        bids: bids.map((e: any) => ({
-          applicant: e.applicant,
-          price: parseFloat(ethers.utils.formatEther(e.price)),
-        })),
-        highestBid: bids
-          .map((e: any) => ({
-            applicant: e.applicant,
-            price: parseFloat(ethers.utils.formatEther(e.price)),
-          }))
-          .reduce(
-            (prev: any, cur: any) => (prev.price >= cur.price ? prev : cur),
-            { applicant: "", price: 0 }
-          ),
+        bids: enoughBids,
+        highestBid: enoughBids.reduce(
+          (prev: any, cur: any) => (prev.price >= cur.price ? prev : cur),
+          { applicant: "", price: 0 }
+        ),
       };
     } catch (err) {}
     return genesis;
