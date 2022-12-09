@@ -51,40 +51,44 @@ const MyNFTs = () => {
 
       const redditContracts: any = await getRedditContracts();
 
-      const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
-        address: address ?? "",
-        chain: EvmChain.POLYGON,
-      });
+      let nfts;
 
-      await Promise.all(
-        nfts.result.map(async (element) => {
-          const ipfsData = await axios
-            .get(
-              (element?.tokenUri ?? "").replace(
-                "ipfs.moralis.io:2053",
-                "ipfs.io"
-              )
-            )
-            .then((res) => res.data);
+      do {
+        nfts = await Moralis.EvmApi.nft.getWalletNFTs({
+          address: "0xac1a5f1c12ed3f89e949e2ffeb438c3656666666",
+          chain: EvmChain.POLYGON,
+          ...(nfts ? { cursor: nfts?.pagination.cursor } : {}),
+        });
 
-          if (redditContracts.includes(element.tokenAddress.lowercase)) {
-            genesis = [
-              ...genesis,
-              {
-                id: element.result.tokenId,
-                img: ipfsData.image.replace("ipfs://", "https://ipfs.io/ipfs/"),
-                title: ipfsData.name,
-                description: ipfsData.description,
-                selected: false,
-                contractAddress: element.tokenAddress.checksum,
-                owner: element.ownerOf?.checksum,
-                mode: element.contractType === "ERC721" ? 0 : 1,
-              },
-            ];
-          }
-        })
-      );
-    } catch (err) {}
+        await Promise.all(
+          nfts.result.map(async (element) => {
+            if (
+              redditContracts.includes(element.tokenAddress.lowercase) &&
+              element.tokenUri
+            ) {
+              genesis = [
+                ...genesis,
+                {
+                  id: element.result.tokenId,
+                  img: (element.metadata?.image?.toString() ?? "").replace(
+                    "ipfs://",
+                    "https://ipfs.io/ipfs/"
+                  ),
+                  title: element.metadata?.name ?? "",
+                  description: element.metadata?.description ?? "",
+                  selected: false,
+                  contractAddress: element.tokenAddress.checksum,
+                  owner: element.ownerOf?.checksum,
+                  mode: element.contractType === "ERC721" ? 0 : 1,
+                },
+              ];
+            }
+          })
+        );
+      } while (nfts.pagination.cursor);
+    } catch (err) {
+      console.log(err);
+    }
     return genesis;
   };
 
